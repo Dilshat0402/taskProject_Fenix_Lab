@@ -1,0 +1,40 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{partions/main}"
+>
+<div layout:fragment="contentOfSite">
+    <form th:action="@{/registration}" method="post" th:object="${user}">
+        <div class="row mt-5">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username:</label>
+                <input type="text" class="form-control" id="username" th:field="*{username}" placeholder="Insert username">
+                <p th:each="error: ${#fields.errors('username')}"
+                   th:text="${error}"></p>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Username:</label>
+                <input type="text" class="form-control" id="email" th:field="*{email}" placeholder="Insert email">
+                <p th:each="error: ${#fields.errors('username')}"
+                   th:text="${error}"></p>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Username:</label>
+                <input type="password" class="form-control" id="password" th:field="*{password}" placeholder="Insert password">
+                <p th:each="error: ${#fields.errors('password')}"
+                   th:text="${error}"></p>
+            </div>
+            <div class="mb-3">
+                <label for="repassword" class="form-label">Username:</label>
+                <input type="password" class="form-control" id="repassword" th:field="*{matchingPassword}" placeholder="Insert repassword">
+                <p th:each="error: ${#fields.errors('matchingPassword')}"
+                   th:text="${error}"></p>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+
+    <p th:if="${message != null}" th:text="${message}"></p>
+
+    <a th:href="@{/registration}">NEW?</a>
+</div>
+</html>
