@@ -1,0 +1,51 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{partions/main}"
+>
+<div layout:fragment="contentOfSite">
+    <title>Task List</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px; /* Расстояние между содержимым и границей ячейки */
+            text-align: left;
+            border-bottom: 1px solid #ddd; /* Горизонтальная линия-разделитель между строками */
+        }
+
+        th {
+            background-color: #f2f2f2; /* Цвет фона заголовков столбцов */
+        }
+    </style>
+    </head>
+
+    <body>
+    <h1>Task List</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Done</th>
+            <th>Author</th>
+            <th>Edit</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${task.title}"></td>
+            <td th:text="${task.description}"></td>
+            <td th:text="${task.done ? 'Yes' : 'No'}"></td>
+            <td th:text="${task.author.username}"></td>
+            <td> <a th:href="'edit/' + ${task.id}" th:text="Edit"></a></td>
+
+        </tr>
+        </tbody>
+    </table>
+    </body>
+</div>
+</html>

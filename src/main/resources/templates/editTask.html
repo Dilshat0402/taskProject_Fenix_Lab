@@ -1,0 +1,29 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{partions/main}"
+>
+<div layout:fragment="contentOfSite">
+    <form th:action="@{/task/edit}" method="post">
+        <div class="row mt-5">
+                <input type="hidden" class="form-control" name="id" th:value="${task_id}">
+            <div class="mb-3">
+                <label for="title" class="form-label">TITLE:</label>
+                <input type="text" class="form-control" id="title" name="title" th:value="${task.title}" placeholder="Insert title">
+            </div>
+            <div class="mb-3">
+                <label for="content" class="form-label">Description</label>
+                <textarea class="form-control" name="description" id="content" rows="3" th:text="${task.description}"></textarea>
+                <input type="checkbox" name="done"> Completed
+            </div>
+            <div class="mb-3">
+                <label for="author" class="form-label">Choose Author</label>
+                <select class="form-select" name="new_author_id" id="author">
+                    <option th:each="author : ${authors}" th:value="${author.id}" th:text="${author.username}" th:selected="${task.author.id == author.id}"></option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+</html>

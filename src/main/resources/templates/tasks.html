@@ -1,0 +1,58 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{partions/main}"
+>
+
+<div layout:fragment="contentOfSite">
+    <title>Task List</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px; /* Расстояние между содержимым и границей ячейки */
+            text-align: left;
+            border-bottom: 1px solid #ddd; /* Горизонтальная линия-разделитель между строками */
+        }
+
+        th {
+            background-color: #f2f2f2; /* Цвет фона заголовков столбцов */
+        }
+    </style>
+    </head>
+
+    <body>
+    <h1>Task List</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Done</th>
+            <th>Author</th>
+            <th>Task Details</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="task : ${tasks}">
+            <td th:text="${task.title}"></td>
+            <td th:text="${task.description}"></td>
+            <td th:text="${task.done ? 'Yes' : 'No'}"></td>
+            <td th:text="${task.author.username}"></td>
+            <td> <a th:href="'tasks/' + ${task.id}" th:text="Details"> </a></td>
+            <td>
+                <form action="/tasks/{taskId}" method="post" th:action="@{'/tasks/' + ${task.id}}">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    </body>
+
+</div>
+</html>

@@ -12,7 +12,7 @@
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" name="password" id="password">
+                <input type="password" class="form-control" name="password" id="password" placeholder="Insert password">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
@@ -20,6 +20,6 @@
 
     <p th:if="${param.logout}"> You logged out</p>
 
-    <a th:href="@{/registration}">NEW?</a>
+    <a th:href="@{/registration}">Registration</a>
 </div>
 </html>
